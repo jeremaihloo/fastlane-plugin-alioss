@@ -50,15 +50,6 @@ module Fastlane
 
         bucket = client.get_bucket(bucket_name)
 
-        # list all buckets
-        UI.message "========== list all buckets =========="
-        bucket_objects = []
-        bucket.list_objects.each do |o|
-          UI.message o.key
-          bucket_objects.push(o.key)
-        end
-        UI.message "======================================"
-
         # 配置logo
         unless bucket.object_exists?("#{path_for_app_name}/icon.png")
           input = File.expand_path(UI.input("icon.png不存在，请上传您App的logo（120*120 <= 尺寸 <= 480*480），请输入文件路径（例如：~/Desktop/icon.png）："))
